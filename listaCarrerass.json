@@ -1,0 +1,39 @@
+[
+    {
+        "nombre": "Ingenier\u00eda en Sistemas",
+        "clave": "IS",
+        "grupos": [
+            {
+                "grado": "1",
+                "seccion": "c",
+                "alumnos": [
+                    {
+                        "matricula": "22170153",
+                        "nombre": "Nicolas",
+                        "ap_paterno": null,
+                        "ap_materno": null,
+                        "curp": null
+                    },
+                    {
+                        "matricula": "22190865",
+                        "nombre": "Mike",
+                        "ap_paterno": null,
+                        "ap_materno": null,
+                        "curp": null
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "nombre": "Licenciatura en Dise\u00f1o",
+        "clave": "LD",
+        "grupos": [
+            {
+                "grado": "2",
+                "seccion": "d",
+                "alumnos": []
+            }
+        ]
+    }
+]

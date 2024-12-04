@@ -1,29 +1,65 @@
-from alumno import Alumno
 from grupo import Grupo
-from lista import lista
+from alumno import Alumno
+import json
+from Crud import crud
 
-class Carrera(lista):
-    def __init__(self, nombre=None,clave=None):
-        super().__init__()
-        self.nombre = nombre
-        self.clave = clave
+class Carrera(crud):
+    def __init__(self, nombre=None, clave=None, grupos=None):
 
+            super().__init__()
+            if nombre is None:
+                self.list = True
+            else:
+                self.list = False
+            self.nombre = nombre
+            self.clave = clave
+            self.grupos = grupos
+        
+    def __str__(self):
+        if self.list:
+            return self.mostList()
+        else:
+            return f"Carrera: {self.nombre}, Clave: {self.clave}, Grupos:\n{self.grupos}"
+        
+        
+    def getDictC(self):
+        if self.list:
+            return [g.getDictC() for g in self.objetos]
+        else:
+            return {
+                "nombre": self.nombre,
+                "clave" : self.clave,
+                "grupos" : self.grupos.getDictG()
+            }
+        
 
-    def __repr__(self):
-        return f'{self.nombre},{self.clave}'
+        
+    def saveJson(self, filename):
+        with open(filename, 'w') as f:
+            json.dump(self.getDictC(), f, indent=4)
+            
+                
+    def loadJsonC(self, filename):
+        with open(filename, 'r') as f:
+            data = json.load(f)
+            self.toObject(data)
+            
+    def toObject(self, data):
+            for carrera_data in data:
+                grupos = Grupo()
+                grupos.toObject(carrera_data['grupos'])                
+                carrera = Carrera(carrera_data['nombre'], carrera_data['clave'], grupos)
+                self.agregar_objeto(carrera)
+        
 
-    def agregar_grupo(self, grupo):
-        self.agregar(grupo)
-
-if __name__ == '__main__':
-    alumno1 = Alumno("Mario", "Garcia", "Rodriguez", "GRCAG554562HCLRSA3", "22122330017")
-    grupo1 = Grupo("7mo", "A")
-    grupo1.agregarAlumno(alumno1)  # Asegúrate de agregar el alumno al grupo
-    carrera1 = Carrera("Tics", "2212")
-    carrera1.agregar_grupo(grupo1)
-
-    print(carrera1)  # Imprime la representación de la carrera
-    for grupo in carrera1.elementos:  # Accede a los grupos
-        print(f"Grupo: {grupo.grado} {grupo.seccion}")
-        for alumno in grupo.elementos:  # Usa `elementos` para acceder a los alumnos
-            print(alumno)
+if __name__ == "__main__":
+    
+    
+    loadcarrera = Carrera()
+    
+    loadcarrera.loadJsonC("carreraCarga.json")
+    
+    print(loadcarrera)
+    
+    
+    

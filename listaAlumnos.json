@@ -1,0 +1,30 @@
+[
+    {
+        "matricula": "123123123",
+        "nombre": "Nicolas",
+        "ap_paterno": "Castaneda",
+        "ap_materno": "Hernandez",
+        "curp": "JKNP123456MCM"
+    },
+    {
+        "matricula": "098098098",
+        "nombre": "Mario",
+        "ap_paterno": "P\u00e9rez",
+        "ap_materno": "Licerio",
+        "curp": "990P098765PGA"
+    },
+    {
+        "matricula": "098098098",
+        "nombre": "Josue",
+        "ap_paterno": "Mendez",
+        "ap_materno": "L\u00f3pez",
+        "curp": "LPOP234567LHA"
+    },
+    {
+        "matricula": "098098033",
+        "nombre": "Leo",
+        "ap_paterno": "Ram\u00edrez",
+        "ap_materno": "S\u00e1nchez",
+        "curp": "999345678RSA"
+    }
+]
